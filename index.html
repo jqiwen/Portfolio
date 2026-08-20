@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f7f9" />
+    <meta
+      name="description"
+      content="Software Engineer specializing in frontend and full-stack development. MEng ECE student at the University of Waterloo with experience building scalable web applications and cloud systems."
+    />
+    <meta name="author" content="Qiwen (Kyra) Jiao" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Kyra Jiao | Software Engineer" />
+    <meta
+      property="og:description"
+      content="Frontend and full-stack software engineer building practical products and scalable systems."
+    />
+    <meta property="og:url" content="https://jqiwen.github.io/" />
+    <meta property="og:image" content="https://jqiwen.github.io/og-card.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://jqiwen.github.io/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      try {
+        const savedTheme = localStorage.getItem('kyra-theme')
+        const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        document.documentElement.dataset.theme = savedTheme || preferredTheme
+      } catch {}
+    </script>
+    <title>Kyra Jiao | Software Engineer</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

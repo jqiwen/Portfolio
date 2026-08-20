@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f6f7f9"/>
+  <path d="M0 1h1200v628H0z" fill="none" stroke="#dfe2e8" stroke-width="2"/>
+  <circle cx="1030" cy="90" r="260" fill="#e9ecff"/>
+  <circle cx="1080" cy="580" r="180" fill="#edf6f3"/>
+  <rect x="90" y="92" width="76" height="76" rx="18" fill="#15171a"/>
+  <text x="108" y="143" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#fff">KJ</text>
+  <text x="90" y="285" font-family="Arial, sans-serif" font-size="75" font-weight="700" fill="#15171a">Kyra Jiao</text>
+  <text x="90" y="363" font-family="Arial, sans-serif" font-size="38" fill="#4050d8">Software Engineer</text>
+  <text x="90" y="434" font-family="Arial, sans-serif" font-size="27" fill="#5f6570">Frontend · Full-Stack · Scalable Systems</text>
+  <text x="90" y="522" font-family="Arial, sans-serif" font-size="22" fill="#747a85">jqiwen.github.io</text>
+</svg>
