@@ -1,6 +1,6 @@
 export const profile = {
-  name: 'Qiwen (Kyra) Jiao',
-  shortName: 'Kyra Jiao',
+  name: 'Qiwen(Kyra) Jiao',
+  shortName: 'Kyra',
   email: 'kyraoaij@gmail.com',
   github: 'https://github.com/jqiwen',
   linkedin: 'https://www.linkedin.com/in/qiwen-jiao/',

@@ -8,7 +8,7 @@ export function Hero() {
       <div className="container hero__grid">
         <div className="hero__content">
           <p className="hero__label"><span aria-hidden="true" /> Software Engineer</p>
-          <h1 id="hero-title">Hi, I’m <em>Kyra.</em></h1>
+          <h1 id="hero-title">Hi, I’m <em>Qiwen(Kyra).</em></h1>
           <p className="hero__statement">I build scalable web applications and practical software systems.</p>
           <p className="hero__description">
             Software engineer with experience across frontend, backend, cloud infrastructure, and data systems. Currently pursuing an MEng in Electrical &amp; Computer Engineering at the University of Waterloo.

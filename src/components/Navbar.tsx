@@ -25,9 +25,9 @@ export function Navbar() {
   return (
     <header className="site-header">
       <nav className="navbar container" aria-label="Primary navigation">
-        <a className="brand" href="#top" aria-label="Kyra Jiao, back to top">
+        <a className="brand" href="#top" aria-label="Qiwen(Kyra) Jiao, back to top">
           <span className="brand__mark" aria-hidden="true">KJ</span>
-          <span className="brand__name">Kyra Jiao</span>
+          <span className="brand__name">Qiwen(Kyra) Jiao</span>
         </a>
 
         <div id="mobile-navigation" className={`nav-panel${isOpen ? ' nav-panel--open' : ''}`}>

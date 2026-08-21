@@ -14,7 +14,7 @@ export function SocialLinks({ includeResume = false, compact = false }: SocialLi
         href={profile.github}
         target="_blank"
         rel="noreferrer"
-        aria-label="Open Kyra Jiao’s GitHub profile"
+        aria-label="Open Kyra’s GitHub profile"
       >
         <Github aria-hidden="true" size={compact ? 17 : 19} />
       </a>
@@ -23,7 +23,7 @@ export function SocialLinks({ includeResume = false, compact = false }: SocialLi
         href={profile.linkedin}
         target="_blank"
         rel="noreferrer"
-        aria-label="Open Kyra Jiao’s LinkedIn profile"
+        aria-label="Open Kyra’s LinkedIn profile"
       >
         <Linkedin aria-hidden="true" size={compact ? 17 : 19} />
       </a>
@@ -33,7 +33,7 @@ export function SocialLinks({ includeResume = false, compact = false }: SocialLi
           href={profile.resume}
           target="_blank"
           rel="noreferrer"
-          aria-label="Open Kyra Jiao’s resume in a new tab"
+          aria-label="Open Kyra’s resume in a new tab"
         >
           <FileText aria-hidden="true" size={compact ? 17 : 19} />
         </a>
