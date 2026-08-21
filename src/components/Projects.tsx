@@ -11,8 +11,8 @@ export function Projects() {
           eyebrow="Projects"
           description="A closer look at product architecture, interaction design, data flow, and the engineering decisions behind the work."
         />
-        <div className="project-grid">
-          {projects.map((project) => <ProjectCard project={project} key={project.id} />)}
+        <div className="project-list">
+          {projects.map((project, index) => <ProjectCard project={project} index={index} key={project.id} />)}
         </div>
       </div>
     </section>
