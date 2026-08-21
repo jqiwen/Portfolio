@@ -1,13 +1,22 @@
-import { ExternalLink, Github } from 'lucide-react'
+import { ChevronDown, ExternalLink, Github } from 'lucide-react'
 import type { Project } from '../data/projects'
 
 interface ProjectCardProps {
   project: Project
+  isExpanded: boolean
+  onToggle: () => void
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, isExpanded, onToggle }: ProjectCardProps) {
+  const detailsId = `${project.id}-details`
+  const titleId = `${project.id}-title`
+
   return (
-    <article className="project-card" id={project.id}>
+    <article
+      className={`project-card${isExpanded ? ' project-card--expanded' : ''}`}
+      id={project.id}
+      aria-labelledby={titleId}
+    >
       <div className={`project-card__image${project.imageFit === 'contain' ? ' project-card__image--contain' : ''}`}>
         {project.image ? (
           <img src={project.image} alt={project.imageAlt ?? ''} loading="lazy" decoding="async" />
@@ -34,29 +43,41 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </div>
       <div className="project-card__content">
         <p className="project-type">{project.type}</p>
-        <h3>{project.title}</h3>
+        <h3 id={titleId}>{project.title}</h3>
         <p className="project-card__subtitle">{project.subtitle}</p>
-        <p className="project-card__description">{project.description}</p>
-        <ul className="project-highlights">
-          {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
-        </ul>
-        <div className="tag-list tag-list--compact" aria-label={`${project.title} technologies`}>
-          {project.technologies.map((technology) => <span key={technology}>{technology}</span>)}
+        <div className="project-card__details" id={detailsId}>
+          <p className="project-card__description">{project.description}</p>
+          <ul className="project-highlights">
+            {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+          </ul>
+          <div className="tag-list tag-list--compact" aria-label={`${project.title} technologies`}>
+            {project.technologies.map((technology) => <span key={technology}>{technology}</span>)}
+          </div>
+          <div className="project-card__actions" aria-label={`${project.title} project links`}>
+            {project.repoUrl && (
+              <a className="project-action" href={project.repoUrl} target="_blank" rel="noreferrer">
+                <Github aria-hidden="true" size={14} />
+                GitHub
+              </a>
+            )}
+            {project.liveUrl && (
+              <a className="project-action project-action--live" href={project.liveUrl} target="_blank" rel="noreferrer">
+                <ExternalLink aria-hidden="true" size={14} />
+                Live site
+              </a>
+            )}
+          </div>
         </div>
-        <div className="project-card__actions" aria-label={`${project.title} project links`}>
-          {project.repoUrl && (
-            <a className="project-action" href={project.repoUrl} target="_blank" rel="noreferrer">
-              <Github aria-hidden="true" size={14} />
-              GitHub
-            </a>
-          )}
-          {project.liveUrl && (
-            <a className="project-action project-action--live" href={project.liveUrl} target="_blank" rel="noreferrer">
-              <ExternalLink aria-hidden="true" size={14} />
-              Live site
-            </a>
-          )}
-        </div>
+        <button
+          type="button"
+          className="project-card__toggle"
+          aria-expanded={isExpanded}
+          aria-controls={detailsId}
+          onClick={onToggle}
+        >
+          {isExpanded ? 'Show less' : 'View details'}
+          <ChevronDown aria-hidden="true" size={16} />
+        </button>
       </div>
     </article>
   )
