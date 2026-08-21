@@ -17,25 +17,33 @@ export const projects: Project[] = [
   {
     id: 'hammerly',
     title: 'Hammerly',
-    subtitle: 'Full-Stack Online Bidding Platform',
-    type: 'Full-stack web application',
+    subtitle: 'AI-Powered Online Auction Platform',
+    type: 'AI-powered full-stack platform',
     description:
       'A full-stack bidding platform with React state management, Django APIs, and SQL-backed bidding data.',
     technologies: [
       'React',
       'TypeScript',
       'Zustand',
-      'Python',
-      'Django',
-      'SQL',
+      'Java',
+      'Spring Boot',
+      'Spring AI',
+      'PostgreSQL',
+      'Redis',
+      'Kafka',
+      'Docker',
+      'Kubernetes',
+      'GCP',
     ],
     highlights: [
-      'Led React frontend development and shared Zustand state architecture.',
-      'Built Django REST APIs and SQL-backed bidding data models.',
+      'Built a full-stack online auction platform supporting 7+ core workflows including authentication, auction creation, bidding, watchlists, profiles, and payment management using React, TypeScript, Spring Boot, Spring Security, JWT, and PostgreSQL.',
+      'Designed 2 independently deployable Spring Boot microservices for marketplace and AI workloads, integrating LLM streaming, RAG, embeddings, and pgvector semantic search to deliver context-aware AI customer support while isolating transactional services from AI failures.',
+      'Engineered a high-concurrency distributed architecture with Kafka async workers, Redis caching and rate limiting, Resilience4j fault isolation, and Kubernetes HPA, with Prometheus/Grafana observability and k6 performance testing across service latency, throughput, and error rates.'
     ],
     repoUrl: 'https://github.com/jqiwen/Hammerly',
     liveUrl: 'https://hammerly.jqiwen.com/',
-    // TODO: Add a verified Hammerly product screenshot when one is available.
+    image: '/projects/hammerly.png',
+    imageAlt: 'Hammerly Poster',
   },
   {
     id: 'gin-rummy',

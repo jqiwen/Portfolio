@@ -874,7 +874,7 @@ ul {
   font-size: 0.78rem;
   line-height: 1.55;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  /* -webkit-line-clamp: 2; */
 }
 
 .project-highlights li::before {
@@ -1043,7 +1043,7 @@ ul {
   font-size: 0.83rem;
   line-height: 1.6;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  /* -webkit-line-clamp: 2; */
 }
 
 .project-card .tag-list {
