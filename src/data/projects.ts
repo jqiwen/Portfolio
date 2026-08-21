@@ -20,7 +20,7 @@ export const projects: Project[] = [
     subtitle: 'Full-Stack Online Bidding Platform',
     type: 'Full-stack web application',
     description:
-      'A full-stack bidding platform built by an Agile team. I owned key frontend flows, shared application state, and backend data/API work.',
+      'A full-stack bidding platform with React state management, Django APIs, and SQL-backed bidding data.',
     technologies: [
       'React',
       'TypeScript',
@@ -28,12 +28,10 @@ export const projects: Project[] = [
       'Python',
       'Django',
       'SQL',
-      'REST API',
     ],
     highlights: [
-      'Led frontend development and translated user stories into interactive React flows.',
-      'Designed shared Zustand state for bidding listings and cross-page UI behavior.',
-      'Created bidding data models and Django REST APIs for backend persistence.',
+      'Led React frontend development and shared Zustand state architecture.',
+      'Built Django REST APIs and SQL-backed bidding data models.',
     ],
     repoUrl: 'https://github.com/jqiwen/Hammerly',
     // TODO: replace with actual Hammerly deployed URL
@@ -46,12 +44,11 @@ export const projects: Project[] = [
     subtitle: 'Interactive Full-Stack Card Game',
     type: 'Full-stack web application',
     description:
-      'A digital recreation of two-player Gin Rummy with a base-twelve ruleset, interactive card play, and API-backed game logic.',
-    technologies: ['React', 'TypeScript', 'Redux', 'Python', 'REST API', 'Google Cloud'],
+      'A two-player Gin Rummy recreation with base-twelve rules, interactive card play, and API-backed game logic.',
+    technologies: ['React', 'TypeScript', 'Redux', 'Python', 'Google Cloud'],
     highlights: [
-      'Modeled game state for a custom 64-card dozenal deck.',
-      'Built responsive card interactions and clear state updates for play.',
-      'Connected the TypeScript interface to a Python API and cloud-hosted services.',
+      'Modeled game state and interactions for a custom base-twelve card game.',
+      'Connected the React and TypeScript frontend to a cloud-hosted Python API.',
     ],
     repoUrl: 'https://github.com/jqiwen/Ginrummy',
     liveUrl: 'https://ginrummy.jqiwen.com',
@@ -65,12 +62,11 @@ export const projects: Project[] = [
     subtitle: 'NLP Classification Pipeline',
     type: 'Data & machine learning',
     description:
-      'A text-classification workflow for annotated Reddit comments, from ground-truth adjudication through feature extraction and model evaluation.',
+      'An NLP classification pipeline for annotated Reddit comments, covering label adjudication, TF-IDF features, and comparative model evaluation.',
     technologies: ['Python', 'scikit-learn', 'NLP', 'TF-IDF'],
     highlights: [
-      'Measured annotation agreement with Cohen’s kappa and produced adjudicated labels.',
-      'Extracted unigram and bigram TF-IDF features from comment text.',
-      'Compared random baselines with Logistic Regression and Random Forest classifiers.',
+      'Measured annotation agreement and produced adjudicated ground-truth labels.',
+      'Compared TF-IDF Logistic Regression and Random Forest classifiers against a random baseline.',
     ],
     repoUrl: 'https://github.com/jqiwen/reddit-comments-analysis-model',
     image: '/projects/reddit-labels.png',
@@ -83,11 +79,10 @@ export const projects: Project[] = [
     subtitle: 'Canadian Economic Forecasting',
     type: 'Machine learning',
     description:
-      'A time-series project comparing Linear Regression and LSTM models for short-term Canadian unemployment-rate forecasting.',
+      'A time-series forecasting project comparing Linear Regression and LSTM models for Canadian unemployment rates.',
     technologies: ['Python', 'TensorFlow', 'scikit-learn', 'Pandas'],
     highlights: [
-      'Integrated historical unemployment and macroeconomic data from Statistics Canada.',
-      'Built preprocessing for aligned time-series features and seasonal signals.',
+      'Aligned Statistics Canada unemployment and macroeconomic time-series data.',
       'Evaluated an LSTM against an interpretable Linear Regression baseline.',
     ],
     repoUrl: 'https://github.com/Ericc-Hao/unemployment-rate-predict-model',

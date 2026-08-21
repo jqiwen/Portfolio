@@ -15,14 +15,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <div
             className="project-card__architecture"
             role="img"
-            aria-label="Hammerly system architecture: React UI, Zustand state, REST API, and SQL persistence"
+            aria-label="Hammerly system architecture: React UI, Zustand state, REST API, Django services, and SQL persistence"
           >
             <div className="project-card__architecture-header">
               <span>System view</span>
               <span>Hammerly / v1</span>
             </div>
             <div className="project-card__architecture-flow">
-              {['React UI', 'Zustand', 'REST API', 'SQL'].map((layer, index) => (
+              {['React UI', 'Zustand', 'REST API', 'Django', 'SQL'].map((layer, index) => (
                 <div className="project-card__architecture-node" key={layer}>
                   <span>0{index + 1}</span>
                   <strong>{layer}</strong>
@@ -46,13 +46,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <div className="project-card__actions" aria-label={`${project.title} project links`}>
           {project.repoUrl && (
             <a className="project-action" href={project.repoUrl} target="_blank" rel="noreferrer">
-              <Github aria-hidden="true" size={16} />
-              View repository
+              <Github aria-hidden="true" size={14} />
+              GitHub
             </a>
           )}
           {project.liveUrl && (
             <a className="project-action project-action--live" href={project.liveUrl} target="_blank" rel="noreferrer">
-              <ExternalLink aria-hidden="true" size={16} />
+              <ExternalLink aria-hidden="true" size={14} />
               Live site
             </a>
           )}
