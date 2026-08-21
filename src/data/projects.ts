@@ -34,26 +34,26 @@ export const projects: Project[] = [
       'Built Django REST APIs and SQL-backed bidding data models.',
     ],
     repoUrl: 'https://github.com/jqiwen/Hammerly',
-    // TODO: replace with actual Hammerly deployed URL
     liveUrl: 'https://hammerly.jqiwen.com/',
     // TODO: Add a verified Hammerly product screenshot when one is available.
   },
   {
     id: 'gin-rummy',
-    title: 'Gin Rummy Twist',
-    subtitle: 'Interactive Full-Stack Card Game',
+    title: 'Gin Rummy Dozenal',
+    subtitle: 'Real-Time Multiplayer Card Game',
     type: 'Full-stack web application',
     description:
       'A two-player Gin Rummy recreation with base-twelve rules, interactive card play, and API-backed game logic.',
-    technologies: ['React', 'TypeScript', 'Redux', 'Python', 'Google Cloud'],
+    technologies: ['React', 'Next.js', 'TypeScript', 'Socket.IO', 'WebSocket', 'Google Cloud'],
     highlights: [
-      'Modeled game state and interactions for a custom base-twelve card game.',
-      'Connected the React and TypeScript frontend to a cloud-hosted Python API.',
+      'Built and deployed a full-stack real-time multiplayer card game supporting 2-player private rooms and synchronized game state through Socket.IO/WebSocket, with a server-authoritative backend for validating player actions and game rules.',
+      'Implemented 8+ core game features, including room creation/joining, card dealing, draw/discard actions, turn management, knock validation, scoring, and multi-round progression for a custom 64-card base-12 Gin Rummy rule set.',
+      'Deployed the static Next.js frontend through GitHub Pages and the Node.js/TypeScript game service on Google Cloud Run, configuring 0–1 instance autoscaling, HTTPS/custom domains, and GitHub Actions CI/CD for automated frontend builds and deployments.'
     ],
     repoUrl: 'https://github.com/jqiwen/Ginrummy',
     liveUrl: 'https://ginrummy.jqiwen.com',
     image: '/projects/gin-rummy.webp',
-    imageAlt: 'Gin Rummy Twist game artwork showing a card table and custom cards',
+    imageAlt: 'Gin Rummy Poster',
     // TODO: Confirm whether to name the original Django backend or the repository's current Flask implementation.
   },
   {
