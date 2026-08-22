@@ -1,7 +1,25 @@
-# Qiwen(Kyra) Jiao — Personal Portfolio
+# Qiwen (Kyra) Jiao — Portfolio
 
-Personal software engineering portfolio built with React and TypeScript and deployed with GitHub Pages. The site emphasizes professional experience, engineering decisions, and a curated set of full-stack and data projects.
+Personal software engineering portfolio showcasing my experience, projects, skills, and education.
 
-## Live Site
+### 🌐 [View Portfolio →](https://jqiwen.com)
 
-[https://jqiwen.com/](https://jqiwen.com/)
+## Tech Stack
+
+`React` `TypeScript` `Vite` `Lucide React` `GitHub Actions` `GitHub Pages`
+
+## Highlights
+
+- Frontend and full-stack software engineering
+- Professional experience and education
+- Selected software projects with live demos
+- Responsive light / dark theme
+- Automated deployment with GitHub Actions
+
+## Running Locally
+
+```bash
+git clone https://github.com/jqiwen/Portfolio.git
+cd Portfolio
+npm install
+npm run dev
