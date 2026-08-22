@@ -625,6 +625,12 @@ ul {
   line-height: 1.8;
 }
 
+.about-links {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
 .text-link {
   display: inline-flex;
   align-items: center;

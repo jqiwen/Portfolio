@@ -1,4 +1,6 @@
-import { ArrowDownRight } from 'lucide-react'
+import {   ArrowDownRight,
+  Briefcase,
+  FolderKanban, } from 'lucide-react'
 import { SectionHeading } from './SectionHeading'
 
 const aboutData = {
@@ -32,10 +34,19 @@ export function About() {
               </p>
             ))}
 
-            <a className="text-link" href="#experience">
-              See working experience
-              <ArrowDownRight aria-hidden="true" size={16} />
-            </a>
+            <div className="about-links">
+              <a className="text-link" href="#experience">
+                <Briefcase aria-hidden="true" size={18} />
+                See working experiences
+                <ArrowDownRight aria-hidden="true" size={16} />
+              </a>
+
+              <a className="text-link" href="#projects">
+                <FolderKanban aria-hidden="true" size={18} />
+                See personal projects
+                <ArrowDownRight aria-hidden="true" size={16} />
+              </a>
+            </div>
           </div>
 
           <div className="about-photo">
