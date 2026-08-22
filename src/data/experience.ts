@@ -16,9 +16,11 @@ export const experience: ExperienceItem[] = [
     location: 'Remote, U.S.',
     focus: 'Cloud infrastructure & data systems',
     achievements: [
-      'Built and deployed an AWS-based transportation data ingestion pipeline using SQS and EC2, integrating DynamoDB data and storing processed outputs in S3 with IAM-based access control.',
-      'Created an ElastiCache Redis cluster to cache frequently accessed data, reducing end-to-end latency by 33%.',
-      'Processed S3 data with EMR and Spark and indexed outputs in Elasticsearch to support downstream analytics and AI models.'
+    'Gathered transportation-related data from existing datasets and public APIs, processed data through SQS, enabling a scalable AI-driven solution for intelligent transportation system.',
+    'Developed and deployed Data Ingestion Service on EC2 to pull data from SQS, integrated DynamoDB-stored data, and saved results into S3 for downstream analytics.',
+    'Created Redis cluster with Elasticache to cache frequently accessed data, optimizing real-time data integration and reducing end-to-end latency by 33%.',
+    'Load data from S3 into EMR, leveraged Spark to parallel process datasets, and feed outputs into ELasticsearch to enhance analytical capabilities and support advanced AI models.',
+    'Applied IAM to manage secure access to sensitive data, conducting comprehensive testing to validate reliability and performance across the system.',
     ],
     technologies: [
       'AWS',
