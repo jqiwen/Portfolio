@@ -30,15 +30,24 @@ export function Navbar() {
           <span className="brand__name">Qiwen(Kyra) Jiao</span>
         </a>
 
-        <div id="mobile-navigation" className={`nav-panel${isOpen ? ' nav-panel--open' : ''}`}>
-          <ThemeToggle />
-          <div className="nav-links">
-            {navigation.map((item) => (
-              <a key={item.href} href={item.href} onClick={() => setIsOpen(false)}>
-                {item.label}
-              </a>
-            ))}
+        <div
+          id="mobile-navigation"
+          className={`nav-panel${isOpen ? ' nav-panel--open' : ''}`}
+        >
+          <div className="nav-center">
+            <div className="nav-links">
+              {navigation.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
           </div>
+
           <div className="nav-actions">
             <a
               className="nav-icon"
@@ -46,33 +55,33 @@ export function Navbar() {
               target="_blank"
               rel="noreferrer"
               aria-label="Open GitHub profile"
-              // data-tooltip="GitHub"
               title="GitHub"
             >
               <Github aria-hidden="true" size={17} />
             </a>
+
             <a
               className="nav-icon"
               href={profile.linkedin}
               target="_blank"
               rel="noreferrer"
               aria-label="Open LinkedIn profile"
-              // data-tooltip="LinkedIn"
               title="LinkedIn"
             >
               <Linkedin aria-hidden="true" size={17} />
             </a>
+
             <a
               className="nav-icon"
               href={profile.resume}
               target="_blank"
               rel="noreferrer"
               aria-label="Open Resume"
-              // data-tooltip="Resume"
               title="Resume"
             >
               <FileText aria-hidden="true" size={17} />
             </a>
+            <ThemeToggle />
           </div>
         </div>
 

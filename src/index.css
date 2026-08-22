@@ -262,6 +262,37 @@ ul {
   gap: 24px;
 }
 
+.nav-panel {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+/* 月亮 + About ~ Projects */
+.nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+/* GitHub / LinkedIn / Resume 继续靠右 */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-left: auto;
+}
+
 .brand {
   display: inline-flex;
   flex: 0 0 auto;
