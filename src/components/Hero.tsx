@@ -1,27 +1,27 @@
-import { ArrowRight, Cloud, Code2, Database, MapPin, Users } from 'lucide-react'
+import { ArrowRight, Cloud, Code2, Database, MapPin, Target } from 'lucide-react'
 import { profile } from '../data/profile'
 import { SocialLinks } from './SocialLinks'
 
 const capabilities = [
   {
     title: 'Full-Stack Developer',
-    description: 'Building end-to-end web applications with modern technologies.',
+    description: 'Building responsive web applications from UI and state management to APIs, databases, and deployment.',
     icon: Code2,
   },
   {
     title: 'Cloud & DevOps',
-    description: 'Experience with cloud infrastructure, CI/CD, and containerization.',
+    description: 'Deploying reliable applications with cloud infrastructure, Docker, CI/CD, and scalable service architecture.',
     icon: Cloud,
   },
   {
     title: 'Data-Oriented',
-    description: 'Working with databases, pipelines, and data-driven applications.',
+    description: 'Designing REST APIs, data models, distributed workflows, and database-backed applications.',
     icon: Database,
   },
   {
-    title: 'User-Focused',
-    description: 'I build with users in mind—clear, accessible, and impactful.',
-    icon: Users,
+    title: 'Product-Focused',
+    description: 'Turning product requirements into clear, maintainable features with performance and user experience in mind.',
+    icon: Target,
   },
 ]
 
