@@ -19,6 +19,13 @@ export function Education() {
               <h3>{item.program}</h3>
               <p className="education-card__school">{item.school}</p>
               <p className="education-card__location"><MapPin aria-hidden="true" size={14} />{item.location}</p>
+              <img
+                className={`education-card__school-logo education-card__school-logo--${item.logoVariant}`}
+                src={item.logo}
+                alt={`${item.school} logo`}
+                loading="lazy"
+                decoding="async"
+              />
             </article>
           ))}
         </div>

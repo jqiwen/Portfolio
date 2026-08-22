@@ -21,7 +21,7 @@ export const projects: Project[] = [
     title: 'Hammerly',
     subtitle: 'AI-Powered Online Auction Platform',
     type: 'AI-powered full-stack platform',
-    date: '2026 — Present',
+    date: 'Jan 2026 — Aug 2026',
     classification: 'Personal Project',
     description:
       'A full-stack bidding platform with React state management, Django APIs, and SQL-backed bidding data.',
@@ -54,7 +54,7 @@ export const projects: Project[] = [
     title: 'Gin Rummy Dozenal',
     subtitle: 'Real-Time Multiplayer Card Game',
     type: 'Full-stack web application',
-    date: '2026',
+    date: 'Sep 2024 - Apr 2025 ',
     classification: 'Personal Project',
     description:
       'A two-player Gin Rummy recreation with base-twelve rules, interactive card play, and API-backed game logic.',
@@ -75,7 +75,7 @@ export const projects: Project[] = [
     title: 'Reddit Comments Analysis',
     subtitle: 'NLP Classification Pipeline',
     type: 'Data & machine learning',
-    date: '2025',
+    date: 'Jan 2025 - Apr 2025',
     classification: 'Academic Project',
     description:
       'An NLP classification pipeline for annotated Reddit comments, covering label adjudication, TF-IDF features, and comparative model evaluation.',
@@ -94,7 +94,7 @@ export const projects: Project[] = [
     title: 'Unemployment Rate Prediction',
     subtitle: 'Canadian Economic Forecasting',
     type: 'Machine learning',
-    date: '2024 — 2025',
+    date: 'Sep 2024 - Dec 2024',
     classification: 'Academic Project',
     description:
       'A time-series forecasting project comparing Linear Regression and LSTM models for Canadian unemployment rates.',

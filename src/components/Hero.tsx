@@ -1,6 +1,29 @@
-import { ArrowDownRight, MapPin } from 'lucide-react'
+import { ArrowRight, Cloud, Code2, Database, MapPin, Users } from 'lucide-react'
 import { profile } from '../data/profile'
 import { SocialLinks } from './SocialLinks'
+
+const capabilities = [
+  {
+    title: 'Full-Stack Developer',
+    description: 'Building end-to-end web applications with modern technologies.',
+    icon: Code2,
+  },
+  {
+    title: 'Cloud & DevOps',
+    description: 'Experience with cloud infrastructure, CI/CD, and containerization.',
+    icon: Cloud,
+  },
+  {
+    title: 'Data-Oriented',
+    description: 'Working with databases, pipelines, and data-driven applications.',
+    icon: Database,
+  },
+  {
+    title: 'User-Focused',
+    description: 'I build with users in mind—clear, accessible, and impactful.',
+    icon: Users,
+  },
+]
 
 export function Hero() {
   return (
@@ -8,19 +31,14 @@ export function Hero() {
       <div className="container hero__grid">
         <div className="hero__content">
           <p className="hero__label"><span aria-hidden="true" /> Software Engineer</p>
-          <h1 id="hero-title">Hi, I’m <em>Qiwen(Kyra).</em></h1>
-          <p className="hero__statement">I build scalable web applications and practical software systems.</p>
+          <h1 id="hero-title">Hi, I’m <em>Qiwen (Kyra).</em></h1>
           <p className="hero__description">
             Software engineer with experience across frontend, backend, cloud infrastructure, and data systems. Currently pursuing an MEng in Electrical &amp; Computer Engineering at the University of Waterloo.
           </p>
           <div className="hero__actions">
-            <a className="button button--secondary" href="#experience">
-              View my experience
-              <ArrowDownRight aria-hidden="true" size={17} />
-            </a>
-            <a className="button button--primary" href="#projects">
-              View my work
-              <ArrowDownRight aria-hidden="true" size={17} />
+            <a className="button button--secondary" href="#about">
+              About me
+              <ArrowRight aria-hidden="true" size={17} />
             </a>
             <SocialLinks includeResume />
           </div>
@@ -30,26 +48,19 @@ export function Hero() {
           </p>
         </div>
 
-        <div className="hero-console" aria-label="Engineering profile summary">
-          <div className="hero-console__bar">
-            <span /><span /><span />
-            <p>engineer.profile</p>
+        <aside className="hero-capabilities" aria-label="Engineering capabilities">
+          <div className="hero-capabilities__grid">
+            {capabilities.map(({ title, description, icon: Icon }) => (
+              <article className="hero-capability" key={title}>
+                <div className="hero-capability__icon" aria-hidden="true">
+                  <Icon size={18} strokeWidth={1.9} />
+                </div>
+                <h2>{title}</h2>
+                <p>{description}</p>
+              </article>
+            ))}
           </div>
-          <div className="hero-console__body">
-            <p className="code-line"><span>const</span> engineer = {'{'}</p>
-            <dl className="code-object">
-              <div><dt>focus:</dt><dd>[“frontend”, “full-stack”],</dd></div>
-              <div><dt>builds:</dt><dd>“practical products”,</dd></div>
-              <div><dt>caresAbout:</dt><dd>[“clarity”, “scale”, “users”],</dd></div>
-              <div><dt>currently:</dt><dd>“MEng @ Waterloo”</dd></div>
-            </dl>
-            <p className="code-line">{'}'}</p>
-          </div>
-          <div className="hero-console__footer">
-            <span className="status-dot" />
-            <span>Open to software engineering opportunities</span>
-          </div>
-        </div>
+        </aside>
       </div>
     </section>
   )

@@ -5,6 +5,8 @@ export interface EducationItem {
   program: string
   location: string
   gpa: string
+  logo: string
+  logoVariant: 'wide' | 'square'
 }
 
 export const education: EducationItem[] = [
@@ -15,6 +17,8 @@ export const education: EducationItem[] = [
     dates: 'Sep 2025 — Dec 2026',
     location: 'Waterloo, Ontario, Canada',
     gpa: '3.9 / 4.0',
+    logo: '/education/waterloo-logo.png',
+    logoVariant: 'wide',
   },
   {
     school: 'McMaster University',
@@ -23,5 +27,7 @@ export const education: EducationItem[] = [
     dates: 'Sep 2020 — Jun 2025',
     location: 'Hamilton, Ontario, Canada',
     gpa: '3.7 / 4.0',
+    logo: '/education/mcmaster-logo.jpg',
+    logoVariant: 'square',
   },
 ]
