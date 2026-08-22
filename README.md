@@ -2,7 +2,7 @@
 
 Personal software engineering portfolio showcasing my experience, projects, skills, and education.
 
-🌐 **Live Site:** [jqiwen.com](https://jqiwen.com)
+### 🌐 [View Live Portfolio →](https://jqiwen.com)
 
 ## Tech Stack
 
