@@ -13,6 +13,7 @@ import {
   Mail,
   MapPin,
   Send,
+  Pin
 } from 'lucide-react'
 
 import { profile } from '../data/profile'
@@ -427,6 +428,17 @@ export function Contact() {
             noValidate
             onSubmit={handleSubmit}
           >
+            <div className="contact-form__note-header">
+              <span className="contact-form__pin" aria-hidden="true">
+                <Pin size={18} strokeWidth={2} />
+              </span>
+
+              <div className="contact-form__note-title">
+                <h3>Leave a Note</h3>
+                <span aria-hidden="true" />
+              </div>
+            </div>
+
             {/* ======================
                 NAME + EMAIL
                 ====================== */}
