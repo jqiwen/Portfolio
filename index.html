@@ -24,7 +24,7 @@
       try {
         const savedTheme = localStorage.getItem('kyra-theme')
         const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-        document.documentElement.dataset.theme = savedTheme || preferredTheme
+        document.documentElement.dataset.theme = 'light'
       } catch {}
     </script>
     <title>Qiwen(Kyra) Jiao | SDE</title>
