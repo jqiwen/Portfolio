@@ -1,5 +1,5 @@
-import { profile } from '../data/profile'
-import { SocialLinks } from './SocialLinks'
+// import { profile } from '../data/profile'
+// import { SocialLinks } from './SocialLinks'
 
 export function Footer() {
   return (
