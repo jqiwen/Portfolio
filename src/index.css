@@ -419,7 +419,7 @@ ul {
  position: absolute;
 
   /* 展开时放到文字区域外面 */
-  left: calc(100% + 12px);
+  left: calc(100%);
   top: 50%;
 
   width: 30px;
@@ -433,10 +433,8 @@ ul {
 
   border-radius: 50%;
 
-  border: 1px solid rgba(148, 163, 184, 0.22);
-
-  background: rgba(255, 255, 255, 0.94);
-
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.45);
   color: #6b7280;
 
   cursor: pointer;
@@ -467,8 +465,8 @@ ul {
 .back-to-top {
   position: fixed;
   z-index: 1001;
-  bottom: 150px;
-  right: 100px;
+  bottom: 120px;
+  right: 120px;
   display: grid;
   width: 42px;
   height: 42px;
@@ -476,7 +474,7 @@ ul {
   place-items: center;
   border: 0;
   border-radius: 50%;
-  background: var(--accent);
+  background: #4050d8;
   box-shadow: 0 8px 22px color-mix(in srgb, var(--accent) 28%, transparent);
   color: var(--surface);
   cursor: pointer;
