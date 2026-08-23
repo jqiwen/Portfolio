@@ -1590,6 +1590,7 @@ ul {
 .contact-info__intro {
   max-width: 410px;
   margin-top: 22px;
+  margin-bottom: 88px;
   color: var(--text-secondary);
   font-size: 1.04rem;
   line-height: 1.75;
@@ -1597,9 +1598,10 @@ ul {
 
 .contact-details {
   display: grid;
-  gap: 16px;
+  gap: 28px;
   margin-top: 32px;
   list-style: none;
+  width: min(100%, 520px);
 }
 
 .contact-details li {
@@ -1629,6 +1631,93 @@ ul {
 .contact-details li a:hover {
   color: var(--accent);
 }
+
+
+/* Left blue icon */
+
+.contact-details__icon {
+  color: var(--accent, #4657e8);
+
+  flex-shrink: 0;
+}
+
+
+/* Text + external icon */
+
+.contact-details__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+  gap: 28px;
+
+  color: var(--muted, #656e7c);
+
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    color 160ms ease;
+}
+
+
+/* Actual text */
+
+.contact-details__value {
+  
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+
+/* External-link icon */
+
+.contact-details__external {
+  flex: 0 0 auto;
+
+  color: #8f98a8;
+
+  opacity: 0.78;
+
+  transition:
+    color 160ms ease,
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+
+/* Hover */
+
+.contact-details__link:hover {
+  color: var(--accent, #4657e8);
+}
+
+.contact-details__link:hover
+  .contact-details__external {
+  color: var(--accent, #4657e8);
+
+  opacity: 1;
+
+  transform: translate(2px, -2px);
+}
+
+
+/* Keyboard navigation */
+
+.contact-details__link:focus-visible {
+  outline: 2px solid
+    rgba(70, 87, 232, 0.35);
+
+  outline-offset: 5px;
+
+  border-radius: 4px;
+}
+
 
 .contact-form {
   position: relative;

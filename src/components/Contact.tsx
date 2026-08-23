@@ -8,12 +8,13 @@ import {
 import {
   AlertCircle,
   CheckCircle2,
+  ExternalLink,
   Github,
   Linkedin,
   Mail,
   MapPin,
+  Pin,
   Send,
-  Pin
 } from 'lucide-react'
 
 import { profile } from '../data/profile'
@@ -48,13 +49,6 @@ const contactDetails = [
     external: false,
   },
   {
-    label: 'Location',
-    value: profile.location,
-    href: undefined,
-    icon: MapPin,
-    external: false,
-  },
-  {
     label: 'LinkedIn',
     value: profile.linkedin
       .replace(/^https?:\/\/(www\.)?/, '')
@@ -71,6 +65,13 @@ const contactDetails = [
     href: profile.github,
     icon: Github,
     external: true,
+  },
+    {
+    label: 'Location',
+    value: profile.location,
+    href: undefined,
+    icon: MapPin,
+    external: false,
   },
 ] as const
 
@@ -90,10 +91,6 @@ export function Contact() {
 
   const isSubmittingRef = useRef(false)
 
-  /*
-   * Automatically hide the success overlay
-   * after 4 seconds.
-   */
   useEffect(() => {
     if (submitStatus !== 'success') {
       return
@@ -108,14 +105,6 @@ export function Contact() {
     }
   }, [submitStatus])
 
-  /*
-   * Form is ready only when:
-   *
-   * 1. Name is not empty
-   * 2. Email is not empty
-   * 3. Email format is valid
-   * 4. Message is not empty
-   */
   const trimmedName = formValues.name.trim()
   const trimmedEmail = formValues.email.trim()
   const trimmedMessage = formValues.message.trim()
@@ -132,10 +121,6 @@ export function Contact() {
     trimmedMessage.length > 0 &&
     trimmedMessage.length <= 3000
 
-  /*
-   * Show red email warning only after the user
-   * has actually typed something into the field.
-   */
   const showEmailWarning =
     trimmedEmail.length > 0 && !isEmailValid
 
@@ -148,26 +133,17 @@ export function Contact() {
       [field]: value,
     }))
 
-    /*
-     * Clear old server/submit validation error
-     * when user starts correcting a field.
-     */
     setFieldErrors((current) => {
       if (!current[field]) {
         return current
       }
 
       const next = { ...current }
-
       delete next[field]
 
       return next
     })
 
-    /*
-     * If user edits the form after an error,
-     * remove the old submit error.
-     */
     if (submitStatus === 'error') {
       setSubmitStatus('idle')
     }
@@ -182,11 +158,6 @@ export function Contact() {
       return
     }
 
-    /*
-     * This normally cannot happen because the
-     * button is disabled, but keep validation
-     * here as an extra frontend safeguard.
-     */
     if (!isFormReady) {
       return
     }
@@ -202,9 +173,6 @@ export function Contact() {
 
     const nextErrors: FieldErrors = {}
 
-    /*
-     * Name validation
-     */
     if (!values.name) {
       nextErrors.name =
         'Please enter your name.'
@@ -213,9 +181,6 @@ export function Contact() {
         'Name must be 80 characters or fewer.'
     }
 
-    /*
-     * Email validation
-     */
     if (!values.email) {
       nextErrors.email =
         'Please enter your email.'
@@ -231,9 +196,6 @@ export function Contact() {
         'Please enter a valid email address.'
     }
 
-    /*
-     * Message validation
-     */
     if (!values.message) {
       nextErrors.message =
         'Please enter a message.'
@@ -244,9 +206,6 @@ export function Contact() {
         'Message must be 3000 characters or fewer.'
     }
 
-    /*
-     * Stop if validation failed.
-     */
     if (
       Object.keys(nextErrors).length > 0
     ) {
@@ -286,10 +245,6 @@ export function Contact() {
           body: JSON.stringify({
             ...values,
 
-            /*
-             * Hidden honeypot field.
-             * Keep this for bot protection.
-             */
             website: String(
               formData.get('website') ??
                 '',
@@ -313,9 +268,6 @@ export function Contact() {
         )
       }
 
-      /*
-       * Clear form after successful send.
-       */
       setFormValues({
         name: '',
         email: '',
@@ -329,7 +281,6 @@ export function Contact() {
       setSubmitStatus('success')
     } catch {
       isSubmittingRef.current = false
-
       setSubmitStatus('error')
     }
   }
@@ -352,9 +303,7 @@ export function Contact() {
         </p>
 
         <div className="contact-layout">
-          {/* ======================
-              LEFT SIDE
-              ====================== */}
+          {/* LEFT SIDE */}
 
           <div className="contact-info">
             <h2 id="contact-heading">
@@ -368,54 +317,59 @@ export function Contact() {
               me:
             </p>
 
-            <ul
-              className="contact-details"
-              aria-label="Contact details"
-            >
-              {contactDetails.map(
-                ({
-                  label,
-                  value,
-                  href,
-                  icon: Icon,
-                  external,
-                }) => (
-                  <li key={label}>
-                    <Icon
-                      aria-hidden="true"
-                      size={16}
-                      strokeWidth={1.8}
-                    />
+<ul
+  className="contact-details"
+  aria-label="Contact details"
+>
+  {contactDetails.map(
+    ({
+      label,
+      value,
+      href,
+      icon: Icon,
+      external,
+    }) => (
+      <li key={label}>
+        <Icon
+          className="contact-details__icon"
+          aria-hidden="true"
+          size={17}
+          strokeWidth={1.8}
+        />
 
-                    {href ? (
-                      <a
-                        href={href}
-                        target={
-                          external
-                            ? '_blank'
-                            : undefined
-                        }
-                        rel={
-                          external
-                            ? 'noreferrer'
-                            : undefined
-                        }
-                        aria-label={`${label}: ${value}`}
-                      >
-                        {value}
-                      </a>
-                    ) : (
-                      <p>{value}</p>
-                    )}
-                  </li>
-                ),
-              )}
-            </ul>
+        {href ? (
+          <a
+            className="contact-details__link"
+            href={href}
+            target={external ? '_blank' : undefined}
+            rel={external ? 'noreferrer' : undefined}
+            aria-label={`${label}: ${value}`}
+          >
+            <span className="contact-details__value">
+              {value}
+            </span>
+
+            <ExternalLink
+              className="contact-details__external"
+              aria-hidden="true"
+              size={15}
+              strokeWidth={1.8}
+            />
+          </a>
+        ) : (
+          <div className="contact-details__plain">
+            <span className="contact-details__value">
+              {value}
+            </span>
+          </div>
+        )}
+      </li>
+    ),
+  )}
+</ul>
           </div>
 
-          {/* ======================
-              CONTACT FORM
-              ====================== */}
+          {/* CONTACT FORM */}
 
           <form
             className={`contact-form${
@@ -428,9 +382,17 @@ export function Contact() {
             noValidate
             onSubmit={handleSubmit}
           >
+            {/* Leave a Note */}
+
             <div className="contact-form__note-header">
-              <span className="contact-form__pin" aria-hidden="true">
-                <Pin size={18} strokeWidth={2} />
+              <span
+                className="contact-form__pin"
+                aria-hidden="true"
+              >
+                <Pin
+                  size={18}
+                  strokeWidth={2}
+                />
               </span>
 
               <div className="contact-form__note-title">
@@ -439,13 +401,9 @@ export function Contact() {
               </div>
             </div>
 
-            {/* ======================
-                NAME + EMAIL
-                ====================== */}
+            {/* NAME + EMAIL */}
 
             <div className="contact-form__top-row">
-              {/* Name */}
-
               <div className="contact-form__field">
                 <label htmlFor="contact-name">
                   Name
@@ -495,8 +453,6 @@ export function Contact() {
                 )}
               </div>
 
-              {/* Email */}
-
               <div className="contact-form__field">
                 <label htmlFor="contact-email">
                   Email
@@ -541,8 +497,6 @@ export function Contact() {
                   }
                 />
 
-                {/* Live email format warning */}
-
                 {showEmailWarning &&
                   !fieldErrors.email && (
                     <span
@@ -558,8 +512,6 @@ export function Contact() {
                       email address.
                     </span>
                   )}
-
-                {/* Submit validation error */}
 
                 {fieldErrors.email && (
                   <span
@@ -577,9 +529,7 @@ export function Contact() {
               </div>
             </div>
 
-            {/* ======================
-                MESSAGE
-                ====================== */}
+            {/* MESSAGE */}
 
             <div className="contact-form__field">
               <label htmlFor="contact-message">
@@ -627,9 +577,7 @@ export function Contact() {
               )}
             </div>
 
-            {/* ======================
-                HONEYPOT
-                ====================== */}
+            {/* HONEYPOT */}
 
             <input
               className="contact-form__honeypot"
@@ -640,9 +588,7 @@ export function Contact() {
               aria-hidden="true"
             />
 
-            {/* ======================
-                SEND BUTTON
-                ====================== */}
+            {/* SEND */}
 
             <div className="contact-form__actions">
               <button
@@ -660,8 +606,6 @@ export function Contact() {
                 />
               </button>
 
-              {/* Error after actual send */}
-
               {submitStatus ===
                 'error' && (
                 <p
@@ -674,9 +618,7 @@ export function Contact() {
               )}
             </div>
 
-            {/* ======================
-                SUCCESS OVERLAY
-                ====================== */}
+            {/* SUCCESS */}
 
             {submitStatus ===
               'success' && (
