@@ -96,7 +96,7 @@ export function createResendPayload(
     from: `Portfolio Message <${fromEmail}>`,
     to: [toEmail],
     reply_to: submission.email,
-    subject: `Personal Website Message from - ${submission.name}`,
+    subject: `Message from - ${submission.name}`,
     text: `${submission.message}\n\nFrom: ${submission.email}`,
   }
 }
