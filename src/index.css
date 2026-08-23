@@ -467,8 +467,8 @@ ul {
 .back-to-top {
   position: fixed;
   z-index: 1001;
-  bottom: 28px;
-  left: 28px;
+  bottom: 150px;
+  right: 100px;
   display: grid;
   width: 42px;
   height: 42px;
@@ -502,38 +502,51 @@ ul {
 }
 
 .back-to-top[data-tooltip]::after {
-  position: absolute;
-  z-index: 10;
-  top: 50%;
-  bottom: auto;
-  left: calc(100% + 12px);
-  display: block;
-  padding: 6px 10px;
-  border: 1px solid color-mix(in srgb, var(--border-strong) 55%, transparent);
-  border-radius: 6px;
-  background: color-mix(in srgb, var(--surface) 96%, transparent);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
-  color: var(--text-secondary);
   content: attr(data-tooltip);
-  font-size: 0.75rem;
+
+  position: absolute;
+
+  top: calc(100% + 10px);
+  left: 50%;
+
+  transform: translateX(-50%) translateY(-4px);
+
+ /* 直接控制白框大小 */
+  /* min-width: 104px; */
+  height: 20px;
+  padding: 8 12px;
+
+  border-radius: 6px;
+
+  background: rgba(255, 255, 255, 0.96);
+  color: #606978;
+
+  border: 1px solid rgba(148, 163, 184, 0.22);
+
+  font-size: 12px;
   font-weight: 500;
-  line-height: 1.2;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-50%) translateX(-4px);
-  visibility: hidden;
   white-space: nowrap;
+
+  opacity: 0;
+  visibility: hidden;
+
+  pointer-events: none;
+
+  box-shadow:
+    0 4px 12px rgba(15, 23, 42, 0.08);
+
   transition:
     opacity 180ms ease,
     transform 180ms ease,
     visibility 180ms ease;
 }
 
-.back-to-top[data-tooltip]:hover::after,
-.back-to-top[data-tooltip]:focus-visible::after {
+.back-to-top:hover::after,
+.back-to-top:focus-visible::after {
   opacity: 1;
-  transform: translateY(-50%) translateX(0);
   visibility: visible;
+
+  transform: translateX(-50%) translateY(0);
 }
 
 /* Navigation */
@@ -2067,6 +2080,8 @@ ul {
 /* Footer */
 .site-footer {
   padding: 22px 0 30px;
+
+  background: #eef1f5;
 }
 
 .site-footer__inner {
