@@ -6,7 +6,8 @@ export interface EducationItem {
   location: string
   gpa: string
   logo: string
-  logoVariant: 'wide' | 'square'
+  logoVariant: 'wide' | 'square',
+  status: 'current'|'complete'
 }
 
 export const education: EducationItem[] = [
@@ -19,6 +20,7 @@ export const education: EducationItem[] = [
     gpa: '3.9 / 4.0',
     logo: '/education/waterloo-logo.png',
     logoVariant: 'wide',
+    status: 'current'
   },
   {
     school: 'McMaster University',
@@ -29,5 +31,6 @@ export const education: EducationItem[] = [
     gpa: '3.7 / 4.0',
     logo: '/education/mcmaster-logo.jpg',
     logoVariant: 'square',
+    status:'complete'
   },
 ]
