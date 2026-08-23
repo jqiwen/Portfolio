@@ -38,7 +38,7 @@ test('builds fixed server-controlled Resend fields', () => {
     to: ['kyraoaij@gmail.com'],
     reply_to: 'alice@example.com',
     subject: 'Message from personal website - Alice Chen',
-    text: 'Hi Kyra\n\nSender email: alice@example.com',
+    text: 'Hi Kyra\n\nFrom: alice@example.com',
   })
   assert.equal('cc' in payload, false)
   assert.equal('bcc' in payload, false)
