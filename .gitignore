@@ -8,3 +8,7 @@ dist/
 *.tsbuildinfo
 tmp/
 .npm-cache/
+worker/.dev.vars
+worker/.wrangler/
+worker/test-dist/
+worker/dist/

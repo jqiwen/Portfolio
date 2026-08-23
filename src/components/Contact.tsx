@@ -1,5 +1,5 @@
-import { useState, type FormEvent } from 'react'
-import { Github, Linkedin, Mail, MapPin, Send } from 'lucide-react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { CheckCircle2, Github, Linkedin, Mail, MapPin, Send } from 'lucide-react'
 import { profile } from '../data/profile'
 
 type FieldName = 'name' | 'email' | 'message'
@@ -42,6 +42,17 @@ const contactDetails = [
 export function Contact() {
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({})
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle')
+  const isSubmittingRef = useRef(false)
+
+  useEffect(() => {
+    if (submitStatus !== 'success') return
+
+    const timeoutId = window.setTimeout(() => {
+      setSubmitStatus('idle')
+    }, 4000)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [submitStatus])
 
   const clearFieldError = (field: FieldName) => {
     setFieldErrors((current) => {
@@ -60,7 +71,7 @@ export function Contact() {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    if (submitStatus === 'sending') return
+    if (isSubmittingRef.current) return
 
     const form = event.currentTarget
     const formData = new FormData(form)
@@ -71,13 +82,23 @@ export function Contact() {
     }
     const nextErrors: FieldErrors = {}
 
-    if (!values.name) nextErrors.name = 'Please enter your name.'
+    if (!values.name) {
+      nextErrors.name = 'Please enter your name.'
+    } else if (values.name.length > 80) {
+      nextErrors.name = 'Name must be 80 characters or fewer.'
+    }
     if (!values.email) {
       nextErrors.email = 'Please enter your email.'
+    } else if (values.email.length > 254) {
+      nextErrors.email = 'Email must be 254 characters or fewer.'
     } else if (!emailPattern.test(values.email)) {
       nextErrors.email = 'Please enter a valid email.'
     }
-    if (!values.message) nextErrors.message = 'Please enter a message.'
+    if (!values.message) {
+      nextErrors.message = 'Please enter a message.'
+    } else if (values.message.length > 3000) {
+      nextErrors.message = 'Message must be 3000 characters or fewer.'
+    }
 
     if (Object.keys(nextErrors).length > 0) {
       setFieldErrors(nextErrors)
@@ -88,31 +109,31 @@ export function Contact() {
     }
 
     setFieldErrors({})
+    isSubmittingRef.current = true
     setSubmitStatus('sending')
 
     try {
-      const response = await fetch(form.action, {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
-          Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           ...values,
-          _subject: 'New portfolio contact message',
-          _template: 'table',
-          _honey: String(formData.get('_honey') ?? ''),
+          website: String(formData.get('website') ?? ''),
         }),
       })
-      const result = (await response.json()) as { success?: boolean | string }
+      const result = (await response.json().catch(() => null)) as { success?: boolean } | null
 
-      if (!response.ok || result.success === false || result.success === 'false') {
+      if (!response.ok || result?.success !== true) {
         throw new Error('Message submission failed')
       }
 
       form.reset()
+      isSubmittingRef.current = false
       setSubmitStatus('success')
     } catch {
+      isSubmittingRef.current = false
       setSubmitStatus('error')
     }
   }
@@ -154,8 +175,8 @@ export function Contact() {
           </div>
 
           <form
-            className="contact-form"
-            action={`https://formsubmit.co/ajax/${profile.email}`}
+            className={`contact-form${submitStatus === 'success' ? ' contact-form--success' : ''}`}
+            action="/api/contact"
             method="POST"
             noValidate
             onSubmit={handleSubmit}
@@ -169,7 +190,9 @@ export function Contact() {
                   type="text"
                   autoComplete="name"
                   placeholder="e.g. Kyra Jiao"
+                  maxLength={80}
                   required
+                  disabled={submitStatus === 'success'}
                   aria-invalid={Boolean(fieldErrors.name)}
                   aria-describedby={fieldErrors.name ? 'contact-name-error' : undefined}
                   onChange={() => clearFieldError('name')}
@@ -189,7 +212,9 @@ export function Contact() {
                   type="email"
                   autoComplete="email"
                   placeholder="e.g. kyra@email.com"
+                  maxLength={254}
                   required
+                  disabled={submitStatus === 'success'}
                   aria-invalid={Boolean(fieldErrors.email)}
                   aria-describedby={fieldErrors.email ? 'contact-email-error' : undefined}
                   onChange={() => clearFieldError('email')}
@@ -208,7 +233,9 @@ export function Contact() {
                 id="contact-message"
                 name="message"
                 placeholder="Type your message here..."
+                maxLength={3000}
                 required
+                disabled={submitStatus === 'success'}
                 aria-invalid={Boolean(fieldErrors.message)}
                 aria-describedby={fieldErrors.message ? 'contact-message-error' : undefined}
                 onChange={() => clearFieldError('message')}
@@ -222,7 +249,7 @@ export function Contact() {
 
             <input
               className="contact-form__honeypot"
-              name="_honey"
+              name="website"
               type="text"
               tabIndex={-1}
               autoComplete="off"
@@ -233,21 +260,25 @@ export function Contact() {
               <button
                 className="button contact-form__submit"
                 type="submit"
-                disabled={submitStatus === 'sending'}
+                disabled={submitStatus === 'sending' || submitStatus === 'success'}
               >
-                {submitStatus === 'sending' ? 'Sending...' : 'Send message'}
+                <span>{submitStatus === 'sending' ? 'Sending...' : 'Send message'}</span>
                 <Send aria-hidden="true" size={14} />
               </button>
 
-              <p
-                className={`contact-form__status contact-form__status--${submitStatus}`}
-                role={submitStatus === 'error' ? 'alert' : 'status'}
-                aria-live="polite"
-              >
-                {submitStatus === 'success' && 'Message sent successfully.'}
-                {submitStatus === 'error' && 'Something went wrong. Please try again.'}
-              </p>
+              {submitStatus === 'error' && (
+                <p className="contact-form__status contact-form__status--error" role="alert">
+                  Unable to send your message. Please try again.
+                </p>
+              )}
             </div>
+
+            {submitStatus === 'success' && (
+              <div className="contact-form__success" role="status" aria-live="polite">
+                <CheckCircle2 aria-hidden="true" size={34} strokeWidth={1.8} />
+                <p>Message successfully sent to Kyra.</p>
+              </div>
+            )}
           </form>
         </div>
       </div>

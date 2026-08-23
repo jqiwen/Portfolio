@@ -1,0 +1,35 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "kyra-portfolio-contact",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-22",
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [
+    {
+      "pattern": "jqiwen.com/api/*",
+      "zone_name": "jqiwen.com"
+    }
+  ],
+  "vars": {
+    "CONTACT_FROM_EMAIL": "contact@jqiwen.com",
+    "CONTACT_TO_EMAIL": "kyraoaij@gmail.com"
+  },
+  "secrets": {
+    "required": ["RESEND_API_KEY"]
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "CONTACT_RATE_LIMITER",
+        "class_name": "ContactRateLimiter"
+      }
+    ]
+  },
+  "exports": {
+    "ContactRateLimiter": {
+      "type": "durable-object",
+      "storage": "sqlite"
+    }
+  }
+}

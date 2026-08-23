@@ -1,0 +1,18 @@
+{
+  "name": "kyra-portfolio-contact-worker",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --port 8787",
+    "generate-types": "wrangler types",
+    "typecheck": "wrangler types --check && tsc -p tsconfig.json",
+    "build": "wrangler deploy --dry-run --outdir dist",
+    "test": "tsc -p tsconfig.test.json && node --test test/contact.test.mjs",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "typescript": "~7.0.2",
+    "wrangler": "^4.123.0"
+  }
+}
