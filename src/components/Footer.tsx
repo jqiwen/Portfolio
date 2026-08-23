@@ -3,13 +3,16 @@ import { SocialLinks } from './SocialLinks'
 
 export function Footer() {
   return (
-    <footer className="site-footer">
+    
+    <footer className="site-footer section--tinted">
       <div className="container site-footer__inner">
-        <div>
+        <p> © 2026 Qiwen (Kyra) Jiao </p>
+        
+        {/* <div>
           <p>Designed and built by {profile.shortName}.</p>
           <span>React · TypeScript · GitHub Pages</span>
         </div>
-        <SocialLinks compact includeResume />
+        <SocialLinks compact includeResume /> */}
       </div>
     </footer>
   )
