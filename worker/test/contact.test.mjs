@@ -34,7 +34,7 @@ test('builds fixed server-controlled Resend fields', () => {
   )
 
   assert.deepEqual(payload, {
-    from: 'Kyra Portfolio <contact@jqiwen.com>',
+    from: 'Portfolio Message <contact@jqiwen.com>',
     to: ['kyraoaij@gmail.com'],
     reply_to: 'alice@example.com',
     subject: 'Message from personal website - Alice Chen',

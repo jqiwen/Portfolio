@@ -81,4 +81,4 @@ curl -X POST https://jqiwen.com/api/contact \
   -d '{"name":"Alice Chen","email":"alice@example.com","message":"Hi Kyra..."}'
 ```
 
-The email is sent from `Kyra Portfolio <contact@jqiwen.com>`, addressed only to `kyraoaij@gmail.com`, and uses the visitor's validated email only as `Reply-To`. No automatic visitor email is sent.
+The email is sent from `Portfolio Message <contact@jqiwen.com>`, addressed only to `kyraoaij@gmail.com`, and uses the visitor's validated email only as `Reply-To`. No automatic visitor email is sent.

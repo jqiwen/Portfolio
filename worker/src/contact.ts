@@ -93,10 +93,10 @@ export function createResendPayload(
   toEmail: string,
 ): ResendEmailPayload {
   return {
-    from: `Kyra Portfolio <${fromEmail}>`,
+    from: `Portfolio Message <${fromEmail}>`,
     to: [toEmail],
     reply_to: submission.email,
-    subject: `Message from personal website - ${submission.name}`,
+    subject: `Personal Website Message from - ${submission.name}`,
     text: `${submission.message}\n\nSender email: ${submission.email}`,
   }
 }

@@ -189,7 +189,7 @@ export function Contact() {
                   name="name"
                   type="text"
                   autoComplete="name"
-                  placeholder="e.g. Kyra Jiao"
+                  placeholder="Your Name"
                   maxLength={80}
                   required
                   disabled={submitStatus === 'success'}
@@ -210,8 +210,8 @@ export function Contact() {
                   id="contact-email"
                   name="email"
                   type="email"
-                  autoComplete="email"
-                  placeholder="e.g. kyra@email.com"
+                  autoComplete="Email"
+                  placeholder="Your email"
                   maxLength={254}
                   required
                   disabled={submitStatus === 'success'}
@@ -232,7 +232,7 @@ export function Contact() {
               <textarea
                 id="contact-message"
                 name="message"
-                placeholder="Type your message here..."
+                placeholder="Leave a message for Kyra ..."
                 maxLength={3000}
                 required
                 disabled={submitStatus === 'success'}
