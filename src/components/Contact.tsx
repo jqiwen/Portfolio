@@ -1,12 +1,42 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react'
-import { CheckCircle2, Github, Linkedin, Mail, MapPin, Send } from 'lucide-react'
+import {
+  useEffect,
+  useRef,
+  useState,
+  type FormEvent,
+} from 'react'
+
+import {
+  AlertCircle,
+  CheckCircle2,
+  Github,
+  Linkedin,
+  Mail,
+  MapPin,
+  Send,
+} from 'lucide-react'
+
 import { profile } from '../data/profile'
 
 type FieldName = 'name' | 'email' | 'message'
-type FieldErrors = Partial<Record<FieldName, string>>
-type SubmitStatus = 'idle' | 'sending' | 'success' | 'error'
 
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+type FieldErrors = Partial<
+  Record<FieldName, string>
+>
+
+type SubmitStatus =
+  | 'idle'
+  | 'sending'
+  | 'success'
+  | 'error'
+
+type FormValues = {
+  name: string
+  email: string
+  message: string
+}
+
+const emailPattern =
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const contactDetails = [
   {
@@ -25,14 +55,18 @@ const contactDetails = [
   },
   {
     label: 'LinkedIn',
-    value: profile.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''),
+    value: profile.linkedin
+      .replace(/^https?:\/\/(www\.)?/, '')
+      .replace(/\/$/, ''),
     href: profile.linkedin,
     icon: Linkedin,
     external: true,
   },
   {
     label: 'GitHub',
-    value: profile.github.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''),
+    value: profile.github
+      .replace(/^https?:\/\/(www\.)?/, '')
+      .replace(/\/$/, ''),
     href: profile.github,
     icon: Github,
     external: true,
@@ -40,106 +74,276 @@ const contactDetails = [
 ] as const
 
 export function Contact() {
-  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({})
-  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle')
+  const [formValues, setFormValues] =
+    useState<FormValues>({
+      name: '',
+      email: '',
+      message: '',
+    })
+
+  const [fieldErrors, setFieldErrors] =
+    useState<FieldErrors>({})
+
+  const [submitStatus, setSubmitStatus] =
+    useState<SubmitStatus>('idle')
+
   const isSubmittingRef = useRef(false)
 
+  /*
+   * Automatically hide the success overlay
+   * after 4 seconds.
+   */
   useEffect(() => {
-    if (submitStatus !== 'success') return
+    if (submitStatus !== 'success') {
+      return
+    }
 
     const timeoutId = window.setTimeout(() => {
       setSubmitStatus('idle')
     }, 4000)
 
-    return () => window.clearTimeout(timeoutId)
+    return () => {
+      window.clearTimeout(timeoutId)
+    }
   }, [submitStatus])
 
-  const clearFieldError = (field: FieldName) => {
+  /*
+   * Form is ready only when:
+   *
+   * 1. Name is not empty
+   * 2. Email is not empty
+   * 3. Email format is valid
+   * 4. Message is not empty
+   */
+  const trimmedName = formValues.name.trim()
+  const trimmedEmail = formValues.email.trim()
+  const trimmedMessage = formValues.message.trim()
+
+  const isEmailValid =
+    trimmedEmail.length > 0 &&
+    emailPattern.test(trimmedEmail)
+
+  const isFormReady =
+    trimmedName.length > 0 &&
+    trimmedName.length <= 80 &&
+    isEmailValid &&
+    trimmedEmail.length <= 254 &&
+    trimmedMessage.length > 0 &&
+    trimmedMessage.length <= 3000
+
+  /*
+   * Show red email warning only after the user
+   * has actually typed something into the field.
+   */
+  const showEmailWarning =
+    trimmedEmail.length > 0 && !isEmailValid
+
+  const updateField = (
+    field: FieldName,
+    value: string,
+  ) => {
+    setFormValues((current) => ({
+      ...current,
+      [field]: value,
+    }))
+
+    /*
+     * Clear old server/submit validation error
+     * when user starts correcting a field.
+     */
     setFieldErrors((current) => {
-      if (!current[field]) return current
+      if (!current[field]) {
+        return current
+      }
 
       const next = { ...current }
+
       delete next[field]
+
       return next
     })
 
-    if (submitStatus === 'success' || submitStatus === 'error') {
+    /*
+     * If user edits the form after an error,
+     * remove the old submit error.
+     */
+    if (submitStatus === 'error') {
       setSubmitStatus('idle')
     }
   }
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    event: FormEvent<HTMLFormElement>,
+  ) => {
     event.preventDefault()
 
-    if (isSubmittingRef.current) return
+    if (isSubmittingRef.current) {
+      return
+    }
+
+    /*
+     * This normally cannot happen because the
+     * button is disabled, but keep validation
+     * here as an extra frontend safeguard.
+     */
+    if (!isFormReady) {
+      return
+    }
 
     const form = event.currentTarget
     const formData = new FormData(form)
+
     const values = {
-      name: String(formData.get('name') ?? '').trim(),
-      email: String(formData.get('email') ?? '').trim(),
-      message: String(formData.get('message') ?? '').trim(),
+      name: trimmedName,
+      email: trimmedEmail,
+      message: trimmedMessage,
     }
+
     const nextErrors: FieldErrors = {}
 
+    /*
+     * Name validation
+     */
     if (!values.name) {
-      nextErrors.name = 'Please enter your name.'
+      nextErrors.name =
+        'Please enter your name.'
     } else if (values.name.length > 80) {
-      nextErrors.name = 'Name must be 80 characters or fewer.'
-    }
-    if (!values.email) {
-      nextErrors.email = 'Please enter your email.'
-    } else if (values.email.length > 254) {
-      nextErrors.email = 'Email must be 254 characters or fewer.'
-    } else if (!emailPattern.test(values.email)) {
-      nextErrors.email = 'Please enter a valid email.'
-    }
-    if (!values.message) {
-      nextErrors.message = 'Please enter a message.'
-    } else if (values.message.length > 3000) {
-      nextErrors.message = 'Message must be 3000 characters or fewer.'
+      nextErrors.name =
+        'Name must be 80 characters or fewer.'
     }
 
-    if (Object.keys(nextErrors).length > 0) {
+    /*
+     * Email validation
+     */
+    if (!values.email) {
+      nextErrors.email =
+        'Please enter your email.'
+    } else if (
+      values.email.length > 254
+    ) {
+      nextErrors.email =
+        'Email must be 254 characters or fewer.'
+    } else if (
+      !emailPattern.test(values.email)
+    ) {
+      nextErrors.email =
+        'Please enter a valid email address.'
+    }
+
+    /*
+     * Message validation
+     */
+    if (!values.message) {
+      nextErrors.message =
+        'Please enter a message.'
+    } else if (
+      values.message.length > 3000
+    ) {
+      nextErrors.message =
+        'Message must be 3000 characters or fewer.'
+    }
+
+    /*
+     * Stop if validation failed.
+     */
+    if (
+      Object.keys(nextErrors).length > 0
+    ) {
       setFieldErrors(nextErrors)
       setSubmitStatus('idle')
-      const firstInvalidField = Object.keys(nextErrors)[0] as FieldName
-      ;(form.elements.namedItem(firstInvalidField) as HTMLElement | null)?.focus()
+
+      const firstInvalidField =
+        Object.keys(
+          nextErrors,
+        )[0] as FieldName
+
+      ;(
+        form.elements.namedItem(
+          firstInvalidField,
+        ) as HTMLElement | null
+      )?.focus()
+
       return
     }
 
     setFieldErrors({})
+
     isSubmittingRef.current = true
     setSubmitStatus('sending')
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...values,
-          website: String(formData.get('website') ?? ''),
-        }),
-      })
-      const result = (await response.json().catch(() => null)) as { success?: boolean } | null
+      const response = await fetch(
+        '/api/contact',
+        {
+          method: 'POST',
 
-      if (!response.ok || result?.success !== true) {
-        throw new Error('Message submission failed')
+          headers: {
+            'Content-Type':
+              'application/json',
+          },
+
+          body: JSON.stringify({
+            ...values,
+
+            /*
+             * Hidden honeypot field.
+             * Keep this for bot protection.
+             */
+            website: String(
+              formData.get('website') ??
+                '',
+            ),
+          }),
+        },
+      )
+
+      const result = (await response
+        .json()
+        .catch(() => null)) as {
+        success?: boolean
+      } | null
+
+      if (
+        !response.ok ||
+        result?.success !== true
+      ) {
+        throw new Error(
+          'Message submission failed',
+        )
       }
 
+      /*
+       * Clear form after successful send.
+       */
+      setFormValues({
+        name: '',
+        email: '',
+        message: '',
+      })
+
       form.reset()
+
       isSubmittingRef.current = false
+
       setSubmitStatus('success')
     } catch {
       isSubmittingRef.current = false
+
       setSubmitStatus('error')
     }
   }
 
+  const isButtonDisabled =
+    !isFormReady ||
+    submitStatus === 'sending' ||
+    submitStatus === 'success'
+
   return (
-    <section className="contact-section" id="contact" aria-labelledby="contact-heading">
+    <section
+      className="contact-section"
+      id="contact"
+      aria-labelledby="contact-heading"
+    >
       <div className="container">
         <p className="eyebrow contact-eyebrow">
           <span aria-hidden="true" />
@@ -147,105 +351,273 @@ export function Contact() {
         </p>
 
         <div className="contact-layout">
+          {/* ======================
+              LEFT SIDE
+              ====================== */}
+
           <div className="contact-info">
-            <h2 id="contact-heading">Let’s connect</h2>
+            <h2 id="contact-heading">
+              Let’s connect
+            </h2>
+
             <p className="contact-info__intro">
-              I’m always open to discussing new opportunities and interesting ideas. Reach out to me:
+              I’m always open to discussing
+              new opportunities and
+              interesting ideas. Reach out to
+              me:
             </p>
 
-            <ul className="contact-details" aria-label="Contact details">
-              {contactDetails.map(({ label, value, href, icon: Icon, external }) => (
-                <li key={label}>
-                  <Icon aria-hidden="true" size={16} strokeWidth={1.8} />
-                  {href ? (
-                    <a
-                      href={href}
-                      target={external ? '_blank' : undefined}
-                      rel={external ? 'noreferrer' : undefined}
-                      aria-label={`${label}: ${value}`}
-                    >
-                      {value}
-                    </a>
-                  ) : (
-                    <p>{value}</p>
-                  )}
-                </li>
-              ))}
+            <ul
+              className="contact-details"
+              aria-label="Contact details"
+            >
+              {contactDetails.map(
+                ({
+                  label,
+                  value,
+                  href,
+                  icon: Icon,
+                  external,
+                }) => (
+                  <li key={label}>
+                    <Icon
+                      aria-hidden="true"
+                      size={16}
+                      strokeWidth={1.8}
+                    />
+
+                    {href ? (
+                      <a
+                        href={href}
+                        target={
+                          external
+                            ? '_blank'
+                            : undefined
+                        }
+                        rel={
+                          external
+                            ? 'noreferrer'
+                            : undefined
+                        }
+                        aria-label={`${label}: ${value}`}
+                      >
+                        {value}
+                      </a>
+                    ) : (
+                      <p>{value}</p>
+                    )}
+                  </li>
+                ),
+              )}
             </ul>
           </div>
 
+          {/* ======================
+              CONTACT FORM
+              ====================== */}
+
           <form
-            className={`contact-form${submitStatus === 'success' ? ' contact-form--success' : ''}`}
+            className={`contact-form${
+              submitStatus === 'success'
+                ? ' contact-form--success'
+                : ''
+            }`}
             action="/api/contact"
             method="POST"
             noValidate
             onSubmit={handleSubmit}
           >
+            {/* ======================
+                NAME + EMAIL
+                ====================== */}
+
             <div className="contact-form__top-row">
+              {/* Name */}
+
               <div className="contact-form__field">
-                <label htmlFor="contact-name">Name</label>
+                <label htmlFor="contact-name">
+                  Name
+                </label>
+
                 <input
                   id="contact-name"
                   name="name"
                   type="text"
                   autoComplete="name"
-                  placeholder="Your Name"
+                  placeholder="Your name"
                   maxLength={80}
                   required
-                  disabled={submitStatus === 'success'}
-                  aria-invalid={Boolean(fieldErrors.name)}
-                  aria-describedby={fieldErrors.name ? 'contact-name-error' : undefined}
-                  onChange={() => clearFieldError('name')}
+                  value={formValues.name}
+                  disabled={
+                    submitStatus ===
+                    'success'
+                  }
+                  aria-invalid={Boolean(
+                    fieldErrors.name,
+                  )}
+                  aria-describedby={
+                    fieldErrors.name
+                      ? 'contact-name-error'
+                      : undefined
+                  }
+                  onChange={(event) =>
+                    updateField(
+                      'name',
+                      event.target.value,
+                    )
+                  }
                 />
+
                 {fieldErrors.name && (
-                  <span className="contact-form__error" id="contact-name-error">
+                  <span
+                    className="contact-form__error"
+                    id="contact-name-error"
+                  >
+                    <AlertCircle
+                      aria-hidden="true"
+                      size={14}
+                    />
+
                     {fieldErrors.name}
                   </span>
                 )}
               </div>
 
+              {/* Email */}
+
               <div className="contact-form__field">
-                <label htmlFor="contact-email">Email</label>
+                <label htmlFor="contact-email">
+                  Email
+                </label>
+
                 <input
                   id="contact-email"
                   name="email"
                   type="email"
-                  autoComplete="Email"
-                  placeholder="Your email"
+                  autoComplete="email"
+                  placeholder="e.g. you@email.com"
                   maxLength={254}
                   required
-                  disabled={submitStatus === 'success'}
-                  aria-invalid={Boolean(fieldErrors.email)}
-                  aria-describedby={fieldErrors.email ? 'contact-email-error' : undefined}
-                  onChange={() => clearFieldError('email')}
+                  value={formValues.email}
+                  disabled={
+                    submitStatus ===
+                    'success'
+                  }
+                  className={
+                    showEmailWarning ||
+                    fieldErrors.email
+                      ? 'contact-form__input--invalid'
+                      : undefined
+                  }
+                  aria-invalid={
+                    showEmailWarning ||
+                    Boolean(
+                      fieldErrors.email,
+                    )
+                  }
+                  aria-describedby={
+                    showEmailWarning ||
+                    fieldErrors.email
+                      ? 'contact-email-error'
+                      : undefined
+                  }
+                  onChange={(event) =>
+                    updateField(
+                      'email',
+                      event.target.value,
+                    )
+                  }
                 />
+
+                {/* Live email format warning */}
+
+                {showEmailWarning &&
+                  !fieldErrors.email && (
+                    <span
+                      className="contact-form__error"
+                      id="contact-email-error"
+                    >
+                      <AlertCircle
+                        aria-hidden="true"
+                        size={14}
+                      />
+
+                      Please enter a valid
+                      email address.
+                    </span>
+                  )}
+
+                {/* Submit validation error */}
+
                 {fieldErrors.email && (
-                  <span className="contact-form__error" id="contact-email-error">
+                  <span
+                    className="contact-form__error"
+                    id="contact-email-error"
+                  >
+                    <AlertCircle
+                      aria-hidden="true"
+                      size={14}
+                    />
+
                     {fieldErrors.email}
                   </span>
                 )}
               </div>
             </div>
 
+            {/* ======================
+                MESSAGE
+                ====================== */}
+
             <div className="contact-form__field">
-              <label htmlFor="contact-message">Message</label>
+              <label htmlFor="contact-message">
+                Message
+              </label>
+
               <textarea
                 id="contact-message"
                 name="message"
-                placeholder="Leave a message for Kyra ..."
+                placeholder="Leave a message for Kyra..."
                 maxLength={3000}
                 required
-                disabled={submitStatus === 'success'}
-                aria-invalid={Boolean(fieldErrors.message)}
-                aria-describedby={fieldErrors.message ? 'contact-message-error' : undefined}
-                onChange={() => clearFieldError('message')}
+                value={formValues.message}
+                disabled={
+                  submitStatus === 'success'
+                }
+                aria-invalid={Boolean(
+                  fieldErrors.message,
+                )}
+                aria-describedby={
+                  fieldErrors.message
+                    ? 'contact-message-error'
+                    : undefined
+                }
+                onChange={(event) =>
+                  updateField(
+                    'message',
+                    event.target.value,
+                  )
+                }
               />
+
               {fieldErrors.message && (
-                <span className="contact-form__error" id="contact-message-error">
+                <span
+                  className="contact-form__error"
+                  id="contact-message-error"
+                >
+                  <AlertCircle
+                    aria-hidden="true"
+                    size={14}
+                  />
+
                   {fieldErrors.message}
                 </span>
               )}
             </div>
+
+            {/* ======================
+                HONEYPOT
+                ====================== */}
 
             <input
               className="contact-form__honeypot"
@@ -256,27 +628,61 @@ export function Contact() {
               aria-hidden="true"
             />
 
+            {/* ======================
+                SEND BUTTON
+                ====================== */}
+
             <div className="contact-form__actions">
               <button
                 className="button contact-form__submit"
                 type="submit"
-                disabled={submitStatus === 'sending' || submitStatus === 'success'}
+                disabled={isButtonDisabled}
               >
-                <span>{submitStatus === 'sending' ? 'Sending...' : 'Send message'}</span>
-                <Send aria-hidden="true" size={14} />
+                <span>
+                  Send message
+                </span>
+
+                <Send
+                  aria-hidden="true"
+                  size={14}
+                />
               </button>
 
-              {submitStatus === 'error' && (
-                <p className="contact-form__status contact-form__status--error" role="alert">
-                  Unable to send your message. Please try again.
+              {/* Error after actual send */}
+
+              {submitStatus ===
+                'error' && (
+                <p
+                  className="contact-form__status contact-form__status--error"
+                  role="alert"
+                >
+                  Unable to send your
+                  message. Please try again.
                 </p>
               )}
             </div>
 
-            {submitStatus === 'success' && (
-              <div className="contact-form__success" role="status" aria-live="polite">
-                <CheckCircle2 aria-hidden="true" size={34} strokeWidth={1.8} />
-                <p>Message successfully sent to Kyra.</p>
+            {/* ======================
+                SUCCESS OVERLAY
+                ====================== */}
+
+            {submitStatus ===
+              'success' && (
+              <div
+                className="contact-form__success"
+                role="status"
+                aria-live="polite"
+              >
+                <CheckCircle2
+                  aria-hidden="true"
+                  size={34}
+                  strokeWidth={1.8}
+                />
+
+                <p>
+                  Message successfully sent
+                  to Kyra.
+                </p>
               </div>
             )}
           </form>
