@@ -1,13 +1,15 @@
 import { FileText, Github, Linkedin, Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { profile } from '../data/profile'
-import { ThemeToggle } from './ThemeToggle'
+// import { ThemeToggle } from './ThemeToggle'
 
 const navigation = [
   { label: 'About', href: '#about' },
   { label: 'Education', href: '#education' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
+
 
 ]
 
@@ -81,7 +83,7 @@ export function Navbar() {
             >
               <FileText aria-hidden="true" size={17} />
             </a>
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
           </div>
         </div>
 
