@@ -492,6 +492,45 @@ ul {
   transform: translateY(-2px);
 }
 
+.back-to-top[data-tooltip] {
+  position: fixed;
+}
+
+.back-to-top[data-tooltip]::after {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  bottom: auto;
+  left: calc(100% + 12px);
+  display: block;
+  padding: 6px 10px;
+  border: 1px solid color-mix(in srgb, var(--border-strong) 55%, transparent);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  color: var(--text-secondary);
+  content: attr(data-tooltip);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) translateX(-4px);
+  visibility: hidden;
+  white-space: nowrap;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 180ms ease;
+}
+
+.back-to-top[data-tooltip]:hover::after,
+.back-to-top[data-tooltip]:focus-visible::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+  visibility: visible;
+}
+
 /* Navigation */
 .site-header {
   position: fixed;

@@ -18,6 +18,7 @@ export function BackToTop() {
       className={`back-to-top${isVisible ? ' back-to-top--visible' : ''}`}
       type="button"
       aria-label="Back to top"
+      data-tooltip="Back to top"
       aria-hidden={!isVisible}
       tabIndex={isVisible ? 0 : -1}
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
