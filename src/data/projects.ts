@@ -19,12 +19,13 @@ export const projects: Project[] = [
   {
     id: 'hammerly',
     title: 'Hammerly',
-    subtitle: 'Online Bidding Platform with AI customer support ',
+    subtitle: 'Online Bidding Platform with AI customer support',
     type: 'AI-powered full-stack platform',
     date: 'Jan 2026 — Aug 2026',
     classification: 'Personal Project',
     description:
-      'An AI-powered full-stack bidding platform built with React and Spring Boot, featuring RAG-based customer support, Kafka-driven async processing, Redis caching, and Kubernetes deployment on GCP.',    technologies: [
+      'An AI-powered full-stack bidding platform built with React and Spring Boot, featuring RAG-based customer support, Kafka-driven async processing, Redis caching, and Kubernetes deployment on GCP.',    
+    technologies: [
       'React',
       'TypeScript',
       'Zustand',
@@ -56,7 +57,8 @@ export const projects: Project[] = [
     date: 'Sep 2024 - Apr 2025 ',
     classification: 'Personal Project',
     description:
-      'A full-stack real-time multiplayer card game using Next.js, Socket.IO/WebSocket, and a server-authoritative backend for synchronized gameplay, rule validation, and private rooms.',    technologies: ['React', 'Next.js', 'TypeScript', 'Socket.IO', 'WebSocket', 'Google Cloud'],
+      'A full-stack real-time multiplayer card game using Next.js, Socket.IO/WebSocket, and a server-authoritative backend for synchronized gameplay, rule validation, and private rooms.',    
+    technologies: ['React', 'Next.js', 'TypeScript', 'Socket.IO', 'WebSocket', 'Google Cloud'],
     highlights: [
       'Built and deployed a full-stack real-time multiplayer card game supporting 2-player private rooms and synchronized game state through Socket.IO/WebSocket, with a server-authoritative backend for validating player actions and game rules.',
       'Implemented 8+ core game features, including room creation/joining, card dealing, draw/discard actions, turn management, knock validation, scoring, and multi-round progression for a custom 64-card base-12 Gin Rummy rule set.',
