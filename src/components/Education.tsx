@@ -38,8 +38,8 @@ export function Education() {
                 <span>GPA {item.gpa}</span>
               </div>
 
-              <h2>{item.degree}</h2>
-              <h3>{item.program}</h3>
+              <h3>{item.degree}</h3>
+              <p className="education-card__program" >{item.program}</p>
 
               <p className="education-card__school">
                 {item.school}

@@ -1545,11 +1545,20 @@ ul {
 }
 
 .education-card__school {
-  margin-top: 12px;
+  margin-top: 16px;
   color: var(--text-secondary);
   font-size: 0.85rem;
   font-weight: 500;
 }
+
+.education-card__program {
+  margin-top: 4px;
+  color: var(--text-primary);
+  /* font-size: 0.85rem; */
+  font-weight: 500;
+}
+
+
 
 .education-card__location {
   display: flex;
