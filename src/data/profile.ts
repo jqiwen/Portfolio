@@ -4,7 +4,7 @@ export const profile = {
   email: 'kyraoaij@gmail.com',
   github: 'https://github.com/jqiwen',
   linkedin: 'https://www.linkedin.com/in/qiwen-jiao/',
-  resume: '/resume.pdf',
+  resume: '/QiwenJiao_Resume_SDE.pdf',
   location: 'Waterloo, Ontario',
 } as const
 
