@@ -14,7 +14,7 @@ export const education: EducationItem[] = [
   {
     school: 'University of Waterloo',
     degree: 'Master of Engineering',
-    program: '— Electrical & Computer Engineering',
+    program: 'Electrical & Computer Engineering',
     dates: 'Sep 2025 — Dec 2026',
     location: 'Waterloo, Ontario, Canada',
     gpa: '3.9 / 4.0',
@@ -25,7 +25,7 @@ export const education: EducationItem[] = [
   {
     school: 'McMaster University',
     degree: 'Bachelor of Applied Science',
-    program: '— Honours Computer Science (Co-op)',
+    program: 'Honours Computer Science (Co-op)',
     dates: 'Sep 2020 — Jun 2025',
     location: 'Hamilton, Ontario, Canada',
     gpa: '3.7 / 4.0',

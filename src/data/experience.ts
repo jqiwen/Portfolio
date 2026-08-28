@@ -1,5 +1,6 @@
 export interface ExperienceItem {
   company: string
+  companyLink: string
   role: string
   dates: string
   location: string
@@ -11,6 +12,7 @@ export interface ExperienceItem {
 export const experience: ExperienceItem[] = [
   {
     company: 'Quantumera AI',
+    companyLink: 'https://www.quantumeraai.com/',
     role: 'Software Development Engineer (Intern)',
     dates: 'May 2026 — Aug 2026',
     location: 'Remote, U.S.',
@@ -19,8 +21,8 @@ export const experience: ExperienceItem[] = [
     'Gathered transportation-related data from existing datasets and public APIs, processed data through SQS, enabling a scalable AI-driven solution for intelligent transportation system.',
     'Developed and deployed Data Ingestion Service on EC2 to pull data from SQS, integrated DynamoDB-stored data, and saved results into S3 for downstream analytics.',
     'Created Redis cluster with Elasticache to cache frequently accessed data, optimizing real-time data integration and reducing end-to-end latency by 33%.',
-    'Load data from S3 into EMR, leveraged Spark to parallel process datasets, and feed outputs into ELasticsearch to enhance analytical capabilities and support advanced AI models.',
-    'Applied IAM to manage secure access to sensitive data, conducting comprehensive testing to validate reliability and performance across the system.',
+    'Loaded data from S3 into EMR, leveraged Spark to parallel process datasets, and feed outputs into Elasticsearch to enhance analytical capabilities and support advanced AI models.',
+    'Applied IAM to manage secure access to sensitive data and conducting comprehensive testing to validate reliability and performance across the system.',
     ],
     technologies: [
       'AWS',
@@ -37,6 +39,7 @@ export const experience: ExperienceItem[] = [
   },
   {
     company: 'Bosch (China) Investment Ltd',
+    companyLink: 'https://www.bosch.com.cn/en/',
     role: 'Software Development Engineer (Intern)',
     dates: 'Aug 2023 — Aug 2024',
     location: 'Suzhou, China',
@@ -46,7 +49,7 @@ export const experience: ExperienceItem[] = [
       'Designed and implemented reusable frontend components with Angular/Vue, improving UI consistency across 20+ modules. Utilized Pinia, RxJS, and Redux for state management and efficient data flow, reducing redundant logic by 30%.',
       'Developed backend services with Spring Boot and MySQL, implementing optimized queries and RESTful APIs documented via Swagger UI. Improved response time by 30% and reduced integration defects by 25%.',
       'Integrated CI/CD pipelines and Dockerized deployments using GitHub Actions under Linux environments, reducing release time by 40% and ensuring distributed reliability.',
-      'Collaborated cross-functionally to design and test APIs, integrating basic NLP-based text parsing modules for data normalization and improving consistency across services; achieved a 99% on-time delivery rate following Agile practices.',
+      'Collaborated cross-functionally to design and test APIs, integrating text parsing and data normalization modules to standardize input formats and improve data consistency across services; achieved a 99% on-time delivery rate following Agile practices.',
     ],
     technologies: [
       'Angular',
@@ -62,6 +65,7 @@ export const experience: ExperienceItem[] = [
   },
   {
     company: 'Bosch (China) Investment Ltd',
+    companyLink: 'https://www.bosch.com.cn/en/',
     role: 'Automation Test Engineer (Intern)',
     dates: 'Jun 2021 — Dec 2021',
     location: 'Suzhou, China',

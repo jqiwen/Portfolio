@@ -1,5 +1,6 @@
 import { experience } from '../data/experience'
 import { SectionHeading } from './SectionHeading'
+import { ExternalLink } from 'lucide-react'
 
 export function Experience() {
   return (
@@ -20,8 +21,21 @@ export function Experience() {
               <div className="experience-item__body">
                 <p className="experience-item__focus">{item.focus}</p>
                 <h3>{item.role}</h3>
-                <p className="experience-item__company">{item.company}</p>
-                {/* <p className="experience-item__summary">{item.summary}</p> */}
+                <p className="experience-item__company">
+                  {item.companyLink ? (
+                    <a
+                      href={item.companyLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="experience-item__company-link"
+                    >
+                      {item.company}
+                      <ExternalLink size={15} aria-hidden="true" />
+                    </a>
+                  ) : (
+                    item.company
+                  )}
+                </p>
                 <ul className="achievement-list">
                   {item.achievements.map((achievement) => <li key={achievement}>{achievement}</li>)}
                 </ul>

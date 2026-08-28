@@ -17,7 +17,7 @@ export function SectionRail() {
 
   const [isVisible, setIsVisible] = useState(false)
 
-  const [isCollapsed, setIsCollapsed] = useState(false)
+  const [isCollapsed, setIsCollapsed] = useState(true)
 
   useEffect(() => {
     let animationFrame = 0
