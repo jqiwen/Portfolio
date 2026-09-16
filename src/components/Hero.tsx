@@ -31,14 +31,17 @@ export function Hero() {
       <div className="container hero__grid">
         <div className="hero__content">
           <p className="hero__label"><span aria-hidden="true" /> Software Engineer</p>
-          <h1 id="hero-title">Hi, I’m <em>Qiwen (Kyra).</em></h1>
+          <h1 id="hero-title">Hi, I’m <em><span className="desktop-hero-name">Qiwen (Kyra).</span><span className="mobile-only">Qiwen (Kyra).</span></em></h1>
           <p className="hero__description">
             Software engineer with experience across frontend, backend, cloud infrastructure, and data systems. Currently pursuing an MEng in Electrical &amp; Computer Engineering at the University of Waterloo.
           </p>
           <div className="hero__actions">
-            <a className="button button--secondary" href="#about">
+            <a className="button button--secondary desktop-hero-cta" href="#about">
               About me
               <ArrowRight aria-hidden="true" size={17} />
+            </a>
+            <a className="button mobile-only mobile-work-cta" href="#projects">
+              View my work <ArrowRight aria-hidden="true" size={18} />
             </a>
             <SocialLinks includeResume />
           </div>
