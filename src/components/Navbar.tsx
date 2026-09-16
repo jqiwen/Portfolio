@@ -28,7 +28,12 @@ export function Navbar() {
     <header className="site-header">
       <nav className="navbar container" aria-label="Primary navigation">
         <a className="brand" href="#top" aria-label="Qiwen(Kyra) Jiao, back to top">
-          <span className="brand__mark" aria-hidden="true">KJ</span>
+          <img
+            className="brand__mark"
+            src="/favicon.png"
+            alt=""
+            aria-hidden="true"
+          />
           <span className="brand__name">Qiwen(Kyra) Jiao</span>
         </a>
 
