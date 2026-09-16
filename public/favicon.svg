@@ -1,5 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="KJ">
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 64 64"
+     role="img"
+     aria-label="KJ">
+
+  <!-- Background -->
   <rect width="64" height="64" rx="15" fill="#15171a"/>
-  <path d="M17 16h7v14l12-14h9L31.7 31 46 48h-9L24 32.6V48h-7V16Z" fill="#fff"/>
-  <path d="M47 16v20c0 8-3.5 12-10.8 12h-1.7v-6h1.2c3.1 0 4.3-1.7 4.3-5.8V16h7Z" fill="#6d7cff"/>
+
+  <!-- K -->
+  <path
+    d="M15 15
+       H22
+       V29
+       L35 15
+       H44
+       L29.5 31
+       L44.5 49
+       H35.5
+       L22 33
+       V49
+       H15
+       Z"
+    fill="#ffffff"/>
+
+  <!-- J -->
+  <path
+    d="M41 15
+       H49
+       V36
+       C49 44.8 44.5 49.5 36.5 49.5
+       H32
+       L27.5 44
+       H36
+       C39.6 44 41 41.6 41 36
+       Z"
+    fill="#6d7cff"/>
+
 </svg>
