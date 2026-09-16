@@ -18,12 +18,10 @@ export const experience: ExperienceItem[] = [
     location: 'Remote, U.S.',
     focus: 'Cloud infrastructure & data systems',
     achievements: [
-    'Gathered transportation-related data from existing datasets and public APIs, processed data through SQS, enabling a scalable AI-driven solution for intelligent transportation system.',
-    'Developed and deployed Data Ingestion Service on EC2 to pull data from SQS, integrated DynamoDB-stored data, and saved results into S3 for downstream analytics.',
-    'Created Redis cluster with Elasticache to cache frequently accessed data, optimizing real-time data integration and reducing end-to-end latency by 33%.',
-    'Loaded data from S3 into EMR, leveraged Spark to parallel process datasets, and feed outputs into Elasticsearch to enhance analytical capabilities and support advanced AI models.',
-    'Applied IAM to manage secure access to sensitive data and conducting comprehensive testing to validate reliability and performance across the system.',
-    ],
+      ' Built and deployed an AWS-based transportation data ingestion pipeline using SQS and EC2, integrating DynamoDB data and storing processed outputs in S3 with IAM-based access control.' ,
+      ' Created an ElastiCache Redis cluster to cache frequently accessed data, reducing end-to-end latency by 33%.' ,
+      ' Processed S3 data with EMR and Spark and indexed outputs in Elasticsearch to support downstream analytics and AI models.' 
+  ],
     technologies: [
       'AWS',
       'SQS',
@@ -45,11 +43,11 @@ export const experience: ExperienceItem[] = [
     location: 'Suzhou, China',
     focus: 'Enterprise frontend & full-stack engineering',
     achievements: [
-      'Independently developed and deployed an enterprise-level web system integrating frontend and backend microservices on distributed servers, attracting 5k+ active users and handling 1M+ user requests in parallel.',
-      'Designed and implemented reusable frontend components with Angular/Vue, improving UI consistency across 20+ modules. Utilized Pinia, RxJS, and Redux for state management and efficient data flow, reducing redundant logic by 30%.',
-      'Developed backend services with Spring Boot and MySQL, implementing optimized queries and RESTful APIs documented via Swagger UI. Improved response time by 30% and reduced integration defects by 25%.',
-      'Integrated CI/CD pipelines and Dockerized deployments using GitHub Actions under Linux environments, reducing release time by 40% and ensuring distributed reliability.',
-      'Collaborated cross-functionally to design and test APIs, integrating text parsing and data normalization modules to standardize input formats and improve data consistency across services; achieved a 99% on-time delivery rate following Agile practices.',
+      ' Independently developed the frontend of an enterprise-level web system and integrated it with backend microservices deployed across distributed servers, serving 5K+ users and handling 1M+ user requests.' ,
+      ' Designed and implemented reusable frontend components with Angular/Vue, improving UI consistency across 20+ modules. Utilized Pinia/RxJS for state management and efficient data flow, reducing redundant logic by 30%.' ,
+      ' Developed and maintained backend services with Spring Boot and MySQL, implementing optimized queries and RESTful APIs documented via Swagger UI. Improved response time by 30%.' ,
+      ' Maintained Azure DevOps CI/CD pipelines and supported Dockerized deployments for 5+ services in Linux environments, improving deployment consistency and reliability.' ,
+      ' Collaborated cross-functionally to design and test APIs, integrating text parsing and data normalization modules to standardize input formats and improve data consistency across services; achieved a 99% on-time delivery rate following Agile practices.' 
     ],
     technologies: [
       'Angular',
