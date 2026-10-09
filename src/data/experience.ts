@@ -43,7 +43,7 @@ export const experience: ExperienceItem[] = [
     location: 'Suzhou, China',
     focus: 'Enterprise frontend & full-stack engineering',
     achievements: [
-      ' Independently developed the frontend of an enterprise-level web system and integrated it with backend microservices deployed across distributed servers, serving 5K+ users and handling 1M+ user requests.' ,
+      ' Independently developed the frontend of an enterprise-level web system and integrated it with backend microservices deployed across distributed servers, serving 20+ companies and handling 1M+ user requests.' ,
       ' Designed and implemented reusable frontend components with Angular/Vue, improving UI consistency across 20+ modules. Utilized Pinia/RxJS for state management and efficient data flow, reducing redundant logic by 30%.' ,
       ' Developed and maintained backend services with Spring Boot and MySQL, implementing optimized queries and RESTful APIs documented via Swagger UI. Improved response time by 30%.' ,
       ' Maintained Azure DevOps CI/CD pipelines and supported Dockerized deployments for 5+ services in Linux environments, improving deployment consistency and reliability.' ,
