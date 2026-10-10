@@ -71,7 +71,7 @@ export const experience: ExperienceItem[] = [
     achievements: [
       'Developed and maintained automated test suites using JUnit, designing unit, integration, and regression testing to ensure system reliability and performance. ',
       'Designed detailed test plans and scenarios based on product requirements, executing 200+ test cases, and identifying 50+ critical defects. Worked closely with developers to provide actionable feedback and improve overall product quality.',
-      ' Maintained test execution records and defect tracking reports using Excel, collaborating with developers to reproduce issues, verify bug fixes, and reduce recurring defects by 20%.',
+      ' Maintained test execution records and defect tracking reports, collaborating with developers to reproduce issues, verify bug fixes, and reduce recurring defects by 20%.',
     ],
     technologies: [
       'JUnit',
